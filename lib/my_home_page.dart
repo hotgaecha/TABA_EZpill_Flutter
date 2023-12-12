@@ -1,6 +1,10 @@
 //stful 명령어를 사용해서 stateful Widget을 빠르게 생성함
 //새로운 화면을 띄우기 위해서는 필수적인 요소임.
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -38,7 +42,7 @@ class MainPage extends State<MyHomePage> {
             children: [
               Container(
                 color: Colors.red,
-                width: 50,
+                width: 100,
                 height: 50,
               ),
               //그냥 사이즈 채우는 박스 만들기
