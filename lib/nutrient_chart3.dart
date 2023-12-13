@@ -39,7 +39,7 @@ Future<void> dbConnector(String firebase_uid) async {
 
   //##############################################################################################################
 // base syntax
-  var result = await conn.execute("SELECT product_id FROM basket2 WHERE firebase_uid = :firebase_uid", {"firebase_uid": uid});
+  var result = await conn.execute("SELECT product_id FROM basket2 WHERE firebase_uid = :firebase_uid LIMIT 1", {"firebase_uid": uid});
   String? temp = '';
 
   List<String> products = []; //결과를 리스트로 저장하기 위해 빈 리스트를 만들어주자.
@@ -79,17 +79,17 @@ Future<void> dbConnector(String firebase_uid) async {
   print(product[0]);
 
 //##############################################################################################################
-  List<String> ingredient = [];
-  for( int i=0; i<len; i++) {
-    var product_id = product[i];
-    var result2 = await conn.execute(
-        "SELECT Product_Ingredient_Information FROM product WHERE product_id = :product_id",
-        {"product_id": product_id});
-    for (final row2 in result2.rows) {
-      print(row2.colAt(0));
-
-    }
-  }
+//   List<String> ingredient = [];
+//   for( int i=0; i<len; i++) {
+//     var product_id = product[i];
+//     var result2 = await conn.execute(
+//         "SELECT Product_Ingredient_Information FROM product WHERE product_id = :product_id",
+//         {"product_id": product_id});
+//     for (final row2 in result2.rows) {
+//       print(row2.colAt(0));
+//
+//     }
+//   }
 
   // 종료 대기
   await conn.close();
@@ -105,9 +105,7 @@ class FigmaToCodeApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47),
       ),
       home: Scaffold(
-        body: ListView(children: [
-          Iphone1415ProMax45(),
-        ]),
+
       ),
     );
   }
